@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 
 const Navber = () => {
   const navItems = (
@@ -14,7 +14,7 @@ const Navber = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 h-28 mb-4">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,7 +52,7 @@ const Navber = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+      <button class="btn btn-outline btn-warning">Appointment</button>
       </div>
     </div>
   );
