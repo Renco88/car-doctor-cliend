@@ -1,28 +1,45 @@
-import img from '../../assets/images/login/login.svg'
+import { useContext } from 'react';
+import img from '../../assets/images/login/login.svg';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
- const handleLogin= event => {
-    event.preventDefault();
+  const { signIn } = useContext(AuthContext);
 
- }
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row">
         <div className="mr-12 w-1/2">
-        <img src={img} alt="" />
+          <img src={img} alt="Login Illustration" />
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form onClick={handleLogin} className="card-body">
-          <h1 className="text-3xl text-center font-bold">Login now!</h1>
+          <form onSubmit={handleLogin} className="card-body">
+            <h1 className="text-3xl text-center font-bold">Login now!</h1>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
                 type="email"
-                placeholder="email"
+                name="email"
+                placeholder="Email"
                 className="input input-bordered"
                 required
               />
@@ -33,7 +50,8 @@ const Login = () => {
               </label>
               <input
                 type="password"
-                placeholder="password"
+                name="password"
+                placeholder="Password"
                 className="input input-bordered"
                 required
               />
@@ -47,7 +65,12 @@ const Login = () => {
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
-          <p className='my-4 ml-8'>New to car Doctors <Link to="/SignUp" className='text-orange-600 font-bold' >Sign Up</Link> </p>
+          <p className="my-4 ml-8">
+            New to Car Doctors?{' '}
+            <Link to="/signup" className="text-orange-600 font-bold">
+              Sign Up
+            </Link>
+          </p>
         </div>
       </div>
     </div>
