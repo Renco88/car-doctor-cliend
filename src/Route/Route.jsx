@@ -32,11 +32,11 @@ const router = createBrowserRouter([
         },
         {
           path: 'checkout/:id',
-          element: <Checkout></Checkout>,
+          element: <PrivetRoute><Checkout></Checkout></PrivetRoute>,
           loader: ({params})=> (`http://localhost:5000/services/${params.id}`)
         },
         {
-          path: '/booking',
+          path: 'booking',
           element: <PrivetRoute><Booking></Booking></PrivetRoute>
         }
 
